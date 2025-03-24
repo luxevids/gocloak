@@ -9,7 +9,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"math/rand"
 	"net/http"
 	"net/url"
@@ -21,12 +20,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Nerzal/gocloak/v13"
 	"github.com/go-resty/resty/v2"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/crypto/pkcs12"
-
-	"github.com/Nerzal/gocloak/v13"
 )
 
 type configAdmin struct {
@@ -964,7 +962,7 @@ func Test_LoginSignedJWT(t *testing.T) {
 	defer func() {
 		require.NoError(t, f.Close())
 	}()
-	pfxData, err := ioutil.ReadAll(f)
+	pfxData, err := io.ReadAll(f)
 	require.NoError(t, err)
 	pKey, cert, err := pkcs12.Decode(pfxData, "secret")
 	require.NoError(t, err)
