@@ -1,4 +1,4 @@
-module github.com/luxevids/gocloak
+module github.com/luxevids/gocloak/v13
 
 go 1.23.0
 
